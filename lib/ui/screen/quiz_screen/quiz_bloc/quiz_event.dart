@@ -4,5 +4,5 @@ part of 'quiz_bloc.dart';
 class QuizEvent with _$QuizEvent {
   const factory QuizEvent.loaded() = QuizEventLoaded;
   const factory QuizEvent.optionSelected(int questionIndex, String answer) = QuizEventOptionSelected;
-  const factory QuizEvent.submit() = QuizEventSubmit;
+  const factory QuizEvent.finished() = QuizEventFinished;
 }

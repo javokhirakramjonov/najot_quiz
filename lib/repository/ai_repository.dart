@@ -4,43 +4,13 @@ import 'package:bio_master/domain/question.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
 
 class AiRepository {
-  final String _apiKey = 'AIzaSyDzVQPzYcErrnubyy9UmPcDzfmC8hkeQZM';
+  final model = GenerativeModel(
+    model: 'gemini-1.5-flash-latest',
+    apiKey: 'AIzaSyDzVQPzYcErrnubyy9UmPcDzfmC8hkeQZM',
+  );
 
   Future<List<Question>> generateQuestions(
       String difficulty, String topic) async {
-    // return [
-    //   Question(
-    //     question: 'What is the capital of India?',
-    //     options: ['Mumbai', 'Delhi', 'Kolkata', 'Chennai'],
-    //     correctAnswer: 'Delhi',
-    //   ),
-    //   Question(
-    //     question: 'What is the capital of USA?',
-    //     options: ['New York', 'Washington DC', 'Los Angeles', 'Chicago'],
-    //     correctAnswer: 'Washington DC',
-    //   ),
-    //   Question(
-    //     question: 'What is the capital of UK?',
-    //     options: ['London', 'Manchester', 'Birmingham', 'Liverpool'],
-    //     correctAnswer: 'London',
-    //   ),
-    //   Question(
-    //     question: 'What is the capital of France?',
-    //     options: ['Paris', 'Marseille', 'Lyon', 'Toulouse'],
-    //     correctAnswer: 'Paris',
-    //   ),
-    //   Question(
-    //     question: 'What is the capital of Germany?',
-    //     options: ['Berlin', 'Hamburg', 'Munich', 'Cologne'],
-    //     correctAnswer: 'Berlin',
-    //   ),
-    // ];
-
-    final model = GenerativeModel(
-      model: 'gemini-1.5-flash-latest',
-      apiKey: _apiKey,
-    );
-
     final prompt =
         '''Create 5 questions at an $difficulty level on topic about $topic with 4 options in JSON format indicating the correct answer.
 Here is sample response format:
@@ -68,5 +38,34 @@ json[{
     } else {
       return [];
     }
+  }
+
+  Future<List<String>> getFeedbacks(
+      List<Question> questions, List<String?> selectedOptions) async {
+    try {
+      List<String> feedbacks = List.generate(questions.length, (_) => '');
+
+      for (int i = 0; i < questions.length; i++) {
+        feedbacks[i] =
+        await getFeedback(questions[i], selectedOptions[i] ?? '');
+      }
+
+      return feedbacks;
+    } catch (e) {
+      return List.generate(questions.length, (_) => 'Something went wrong');
+    }
+  }
+
+  Future<String> getFeedback(Question question, String selectedOption) async {
+    final prompt =
+        '''Please analyze the following quiz answers and provide suggestions for improvement
+Question: ${question.question}
+My answer: $selectedOption
+Correct answer: ${question.correctAnswer}''';
+
+    final content = [Content.text(prompt)];
+    final response = await model.generateContent(content);
+
+    return response.text.toString();
   }
 }

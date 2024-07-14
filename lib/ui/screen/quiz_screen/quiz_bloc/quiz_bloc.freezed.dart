@@ -20,21 +20,21 @@ mixin _$QuizEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() loaded,
     required TResult Function(int questionIndex, String answer) optionSelected,
-    required TResult Function() submit,
+    required TResult Function() finished,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loaded,
     TResult? Function(int questionIndex, String answer)? optionSelected,
-    TResult? Function()? submit,
+    TResult? Function()? finished,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loaded,
     TResult Function(int questionIndex, String answer)? optionSelected,
-    TResult Function()? submit,
+    TResult Function()? finished,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -42,21 +42,21 @@ mixin _$QuizEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(QuizEventLoaded value) loaded,
     required TResult Function(QuizEventOptionSelected value) optionSelected,
-    required TResult Function(QuizEventSubmit value) submit,
+    required TResult Function(QuizEventFinished value) finished,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(QuizEventLoaded value)? loaded,
     TResult? Function(QuizEventOptionSelected value)? optionSelected,
-    TResult? Function(QuizEventSubmit value)? submit,
+    TResult? Function(QuizEventFinished value)? finished,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(QuizEventLoaded value)? loaded,
     TResult Function(QuizEventOptionSelected value)? optionSelected,
-    TResult Function(QuizEventSubmit value)? submit,
+    TResult Function(QuizEventFinished value)? finished,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -119,7 +119,7 @@ class _$QuizEventLoadedImpl implements QuizEventLoaded {
   TResult when<TResult extends Object?>({
     required TResult Function() loaded,
     required TResult Function(int questionIndex, String answer) optionSelected,
-    required TResult Function() submit,
+    required TResult Function() finished,
   }) {
     return loaded();
   }
@@ -129,7 +129,7 @@ class _$QuizEventLoadedImpl implements QuizEventLoaded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loaded,
     TResult? Function(int questionIndex, String answer)? optionSelected,
-    TResult? Function()? submit,
+    TResult? Function()? finished,
   }) {
     return loaded?.call();
   }
@@ -139,7 +139,7 @@ class _$QuizEventLoadedImpl implements QuizEventLoaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loaded,
     TResult Function(int questionIndex, String answer)? optionSelected,
-    TResult Function()? submit,
+    TResult Function()? finished,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -153,7 +153,7 @@ class _$QuizEventLoadedImpl implements QuizEventLoaded {
   TResult map<TResult extends Object?>({
     required TResult Function(QuizEventLoaded value) loaded,
     required TResult Function(QuizEventOptionSelected value) optionSelected,
-    required TResult Function(QuizEventSubmit value) submit,
+    required TResult Function(QuizEventFinished value) finished,
   }) {
     return loaded(this);
   }
@@ -163,7 +163,7 @@ class _$QuizEventLoadedImpl implements QuizEventLoaded {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(QuizEventLoaded value)? loaded,
     TResult? Function(QuizEventOptionSelected value)? optionSelected,
-    TResult? Function(QuizEventSubmit value)? submit,
+    TResult? Function(QuizEventFinished value)? finished,
   }) {
     return loaded?.call(this);
   }
@@ -173,7 +173,7 @@ class _$QuizEventLoadedImpl implements QuizEventLoaded {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(QuizEventLoaded value)? loaded,
     TResult Function(QuizEventOptionSelected value)? optionSelected,
-    TResult Function(QuizEventSubmit value)? submit,
+    TResult Function(QuizEventFinished value)? finished,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -265,7 +265,7 @@ class _$QuizEventOptionSelectedImpl implements QuizEventOptionSelected {
   TResult when<TResult extends Object?>({
     required TResult Function() loaded,
     required TResult Function(int questionIndex, String answer) optionSelected,
-    required TResult Function() submit,
+    required TResult Function() finished,
   }) {
     return optionSelected(questionIndex, answer);
   }
@@ -275,7 +275,7 @@ class _$QuizEventOptionSelectedImpl implements QuizEventOptionSelected {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loaded,
     TResult? Function(int questionIndex, String answer)? optionSelected,
-    TResult? Function()? submit,
+    TResult? Function()? finished,
   }) {
     return optionSelected?.call(questionIndex, answer);
   }
@@ -285,7 +285,7 @@ class _$QuizEventOptionSelectedImpl implements QuizEventOptionSelected {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loaded,
     TResult Function(int questionIndex, String answer)? optionSelected,
-    TResult Function()? submit,
+    TResult Function()? finished,
     required TResult orElse(),
   }) {
     if (optionSelected != null) {
@@ -299,7 +299,7 @@ class _$QuizEventOptionSelectedImpl implements QuizEventOptionSelected {
   TResult map<TResult extends Object?>({
     required TResult Function(QuizEventLoaded value) loaded,
     required TResult Function(QuizEventOptionSelected value) optionSelected,
-    required TResult Function(QuizEventSubmit value) submit,
+    required TResult Function(QuizEventFinished value) finished,
   }) {
     return optionSelected(this);
   }
@@ -309,7 +309,7 @@ class _$QuizEventOptionSelectedImpl implements QuizEventOptionSelected {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(QuizEventLoaded value)? loaded,
     TResult? Function(QuizEventOptionSelected value)? optionSelected,
-    TResult? Function(QuizEventSubmit value)? submit,
+    TResult? Function(QuizEventFinished value)? finished,
   }) {
     return optionSelected?.call(this);
   }
@@ -319,7 +319,7 @@ class _$QuizEventOptionSelectedImpl implements QuizEventOptionSelected {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(QuizEventLoaded value)? loaded,
     TResult Function(QuizEventOptionSelected value)? optionSelected,
-    TResult Function(QuizEventSubmit value)? submit,
+    TResult Function(QuizEventFinished value)? finished,
     required TResult orElse(),
   }) {
     if (optionSelected != null) {
@@ -342,35 +342,35 @@ abstract class QuizEventOptionSelected implements QuizEvent {
 }
 
 /// @nodoc
-abstract class _$$QuizEventSubmitImplCopyWith<$Res> {
-  factory _$$QuizEventSubmitImplCopyWith(_$QuizEventSubmitImpl value,
-          $Res Function(_$QuizEventSubmitImpl) then) =
-      __$$QuizEventSubmitImplCopyWithImpl<$Res>;
+abstract class _$$QuizEventFinishedImplCopyWith<$Res> {
+  factory _$$QuizEventFinishedImplCopyWith(_$QuizEventFinishedImpl value,
+          $Res Function(_$QuizEventFinishedImpl) then) =
+      __$$QuizEventFinishedImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$QuizEventSubmitImplCopyWithImpl<$Res>
-    extends _$QuizEventCopyWithImpl<$Res, _$QuizEventSubmitImpl>
-    implements _$$QuizEventSubmitImplCopyWith<$Res> {
-  __$$QuizEventSubmitImplCopyWithImpl(
-      _$QuizEventSubmitImpl _value, $Res Function(_$QuizEventSubmitImpl) _then)
+class __$$QuizEventFinishedImplCopyWithImpl<$Res>
+    extends _$QuizEventCopyWithImpl<$Res, _$QuizEventFinishedImpl>
+    implements _$$QuizEventFinishedImplCopyWith<$Res> {
+  __$$QuizEventFinishedImplCopyWithImpl(_$QuizEventFinishedImpl _value,
+      $Res Function(_$QuizEventFinishedImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$QuizEventSubmitImpl implements QuizEventSubmit {
-  const _$QuizEventSubmitImpl();
+class _$QuizEventFinishedImpl implements QuizEventFinished {
+  const _$QuizEventFinishedImpl();
 
   @override
   String toString() {
-    return 'QuizEvent.submit()';
+    return 'QuizEvent.finished()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$QuizEventSubmitImpl);
+        (other.runtimeType == runtimeType && other is _$QuizEventFinishedImpl);
   }
 
   @override
@@ -381,9 +381,9 @@ class _$QuizEventSubmitImpl implements QuizEventSubmit {
   TResult when<TResult extends Object?>({
     required TResult Function() loaded,
     required TResult Function(int questionIndex, String answer) optionSelected,
-    required TResult Function() submit,
+    required TResult Function() finished,
   }) {
-    return submit();
+    return finished();
   }
 
   @override
@@ -391,9 +391,9 @@ class _$QuizEventSubmitImpl implements QuizEventSubmit {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loaded,
     TResult? Function(int questionIndex, String answer)? optionSelected,
-    TResult? Function()? submit,
+    TResult? Function()? finished,
   }) {
-    return submit?.call();
+    return finished?.call();
   }
 
   @override
@@ -401,11 +401,11 @@ class _$QuizEventSubmitImpl implements QuizEventSubmit {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loaded,
     TResult Function(int questionIndex, String answer)? optionSelected,
-    TResult Function()? submit,
+    TResult Function()? finished,
     required TResult orElse(),
   }) {
-    if (submit != null) {
-      return submit();
+    if (finished != null) {
+      return finished();
     }
     return orElse();
   }
@@ -415,9 +415,9 @@ class _$QuizEventSubmitImpl implements QuizEventSubmit {
   TResult map<TResult extends Object?>({
     required TResult Function(QuizEventLoaded value) loaded,
     required TResult Function(QuizEventOptionSelected value) optionSelected,
-    required TResult Function(QuizEventSubmit value) submit,
+    required TResult Function(QuizEventFinished value) finished,
   }) {
-    return submit(this);
+    return finished(this);
   }
 
   @override
@@ -425,9 +425,9 @@ class _$QuizEventSubmitImpl implements QuizEventSubmit {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(QuizEventLoaded value)? loaded,
     TResult? Function(QuizEventOptionSelected value)? optionSelected,
-    TResult? Function(QuizEventSubmit value)? submit,
+    TResult? Function(QuizEventFinished value)? finished,
   }) {
-    return submit?.call(this);
+    return finished?.call(this);
   }
 
   @override
@@ -435,40 +435,47 @@ class _$QuizEventSubmitImpl implements QuizEventSubmit {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(QuizEventLoaded value)? loaded,
     TResult Function(QuizEventOptionSelected value)? optionSelected,
-    TResult Function(QuizEventSubmit value)? submit,
+    TResult Function(QuizEventFinished value)? finished,
     required TResult orElse(),
   }) {
-    if (submit != null) {
-      return submit(this);
+    if (finished != null) {
+      return finished(this);
     }
     return orElse();
   }
 }
 
-abstract class QuizEventSubmit implements QuizEvent {
-  const factory QuizEventSubmit() = _$QuizEventSubmitImpl;
+abstract class QuizEventFinished implements QuizEvent {
+  const factory QuizEventFinished() = _$QuizEventFinishedImpl;
 }
 
 /// @nodoc
 mixin _$QuizState {
   List<Question> get questions => throw _privateConstructorUsedError;
   List<String?> get selectedOptions => throw _privateConstructorUsedError;
+  bool get isLoading => throw _privateConstructorUsedError;
+  List<String> get feedbacks => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
-            List<Question> questions, List<String?> selectedOptions)
+            List<Question> questions,
+            List<String?> selectedOptions,
+            bool isLoading,
+            List<String> feedbacks)
         ui,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(List<Question> questions, List<String?> selectedOptions)?
+    TResult? Function(List<Question> questions, List<String?> selectedOptions,
+            bool isLoading, List<String> feedbacks)?
         ui,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<Question> questions, List<String?> selectedOptions)?
+    TResult Function(List<Question> questions, List<String?> selectedOptions,
+            bool isLoading, List<String> feedbacks)?
         ui,
     required TResult orElse(),
   }) =>
@@ -500,7 +507,11 @@ abstract class $QuizStateCopyWith<$Res> {
   factory $QuizStateCopyWith(QuizState value, $Res Function(QuizState) then) =
       _$QuizStateCopyWithImpl<$Res, QuizState>;
   @useResult
-  $Res call({List<Question> questions, List<String?> selectedOptions});
+  $Res call(
+      {List<Question> questions,
+      List<String?> selectedOptions,
+      bool isLoading,
+      List<String> feedbacks});
 }
 
 /// @nodoc
@@ -518,6 +529,8 @@ class _$QuizStateCopyWithImpl<$Res, $Val extends QuizState>
   $Res call({
     Object? questions = null,
     Object? selectedOptions = null,
+    Object? isLoading = null,
+    Object? feedbacks = null,
   }) {
     return _then(_value.copyWith(
       questions: null == questions
@@ -528,6 +541,14 @@ class _$QuizStateCopyWithImpl<$Res, $Val extends QuizState>
           ? _value.selectedOptions
           : selectedOptions // ignore: cast_nullable_to_non_nullable
               as List<String?>,
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      feedbacks: null == feedbacks
+          ? _value.feedbacks
+          : feedbacks // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ) as $Val);
   }
 }
@@ -538,7 +559,11 @@ abstract class _$$UiImplCopyWith<$Res> implements $QuizStateCopyWith<$Res> {
       __$$UiImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<Question> questions, List<String?> selectedOptions});
+  $Res call(
+      {List<Question> questions,
+      List<String?> selectedOptions,
+      bool isLoading,
+      List<String> feedbacks});
 }
 
 /// @nodoc
@@ -553,6 +578,8 @@ class __$$UiImplCopyWithImpl<$Res>
   $Res call({
     Object? questions = null,
     Object? selectedOptions = null,
+    Object? isLoading = null,
+    Object? feedbacks = null,
   }) {
     return _then(_$UiImpl(
       questions: null == questions
@@ -563,6 +590,14 @@ class __$$UiImplCopyWithImpl<$Res>
           ? _value._selectedOptions
           : selectedOptions // ignore: cast_nullable_to_non_nullable
               as List<String?>,
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      feedbacks: null == feedbacks
+          ? _value._feedbacks
+          : feedbacks // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ));
   }
 }
@@ -572,9 +607,12 @@ class __$$UiImplCopyWithImpl<$Res>
 class _$UiImpl implements _Ui {
   const _$UiImpl(
       {required final List<Question> questions,
-      final List<String?> selectedOptions = const []})
+      final List<String?> selectedOptions = const [],
+      this.isLoading = false,
+      final List<String> feedbacks = const []})
       : _questions = questions,
-        _selectedOptions = selectedOptions;
+        _selectedOptions = selectedOptions,
+        _feedbacks = feedbacks;
 
   final List<Question> _questions;
   @override
@@ -594,8 +632,20 @@ class _$UiImpl implements _Ui {
   }
 
   @override
+  @JsonKey()
+  final bool isLoading;
+  final List<String> _feedbacks;
+  @override
+  @JsonKey()
+  List<String> get feedbacks {
+    if (_feedbacks is EqualUnmodifiableListView) return _feedbacks;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_feedbacks);
+  }
+
+  @override
   String toString() {
-    return 'QuizState.ui(questions: $questions, selectedOptions: $selectedOptions)';
+    return 'QuizState.ui(questions: $questions, selectedOptions: $selectedOptions, isLoading: $isLoading, feedbacks: $feedbacks)';
   }
 
   @override
@@ -606,14 +656,20 @@ class _$UiImpl implements _Ui {
             const DeepCollectionEquality()
                 .equals(other._questions, _questions) &&
             const DeepCollectionEquality()
-                .equals(other._selectedOptions, _selectedOptions));
+                .equals(other._selectedOptions, _selectedOptions) &&
+            (identical(other.isLoading, isLoading) ||
+                other.isLoading == isLoading) &&
+            const DeepCollectionEquality()
+                .equals(other._feedbacks, _feedbacks));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(_questions),
-      const DeepCollectionEquality().hash(_selectedOptions));
+      const DeepCollectionEquality().hash(_selectedOptions),
+      isLoading,
+      const DeepCollectionEquality().hash(_feedbacks));
 
   @JsonKey(ignore: true)
   @override
@@ -625,30 +681,35 @@ class _$UiImpl implements _Ui {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
-            List<Question> questions, List<String?> selectedOptions)
+            List<Question> questions,
+            List<String?> selectedOptions,
+            bool isLoading,
+            List<String> feedbacks)
         ui,
   }) {
-    return ui(questions, selectedOptions);
+    return ui(questions, selectedOptions, isLoading, feedbacks);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(List<Question> questions, List<String?> selectedOptions)?
+    TResult? Function(List<Question> questions, List<String?> selectedOptions,
+            bool isLoading, List<String> feedbacks)?
         ui,
   }) {
-    return ui?.call(questions, selectedOptions);
+    return ui?.call(questions, selectedOptions, isLoading, feedbacks);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<Question> questions, List<String?> selectedOptions)?
+    TResult Function(List<Question> questions, List<String?> selectedOptions,
+            bool isLoading, List<String> feedbacks)?
         ui,
     required TResult orElse(),
   }) {
     if (ui != null) {
-      return ui(questions, selectedOptions);
+      return ui(questions, selectedOptions, isLoading, feedbacks);
     }
     return orElse();
   }
@@ -685,12 +746,18 @@ class _$UiImpl implements _Ui {
 abstract class _Ui implements QuizState {
   const factory _Ui(
       {required final List<Question> questions,
-      final List<String?> selectedOptions}) = _$UiImpl;
+      final List<String?> selectedOptions,
+      final bool isLoading,
+      final List<String> feedbacks}) = _$UiImpl;
 
   @override
   List<Question> get questions;
   @override
   List<String?> get selectedOptions;
+  @override
+  bool get isLoading;
+  @override
+  List<String> get feedbacks;
   @override
   @JsonKey(ignore: true)
   _$$UiImplCopyWith<_$UiImpl> get copyWith =>

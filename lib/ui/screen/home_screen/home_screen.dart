@@ -32,10 +32,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 );
               }
             },
-            builder: (context, state) => Column(children: [
+            builder: (context, state) => state.isLoading ? _buildLoading() : Column(children: [
               DifficultyDropdown(onDifficultySelected: (String difficulty) {
                 BlocProvider.of<HomeBloc>(context).add(HomeEvent.difficultyChanged(difficulty));
               }),
+              const SizedBox(height: 10),
               Form(
                 key: _formKey,
                 child: Column(
@@ -73,5 +74,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               )
             ])));
+  }
+
+  Widget _buildLoading() {
+    return const Center(
+      child: CircularProgressIndicator(),
+    );
   }
 }

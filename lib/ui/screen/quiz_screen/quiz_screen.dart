@@ -1,6 +1,8 @@
 import 'package:bio_master/domain/question.dart';
+import 'package:bio_master/repository/ai_repository.dart';
 import 'package:bio_master/ui/screen/quiz_screen/components/single_choice_question.dart';
 import 'package:bio_master/ui/screen/quiz_screen/quiz_bloc/quiz_bloc.dart';
+import 'package:bio_master/ui/screen/result_scren/result_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -15,6 +17,7 @@ class QuizScreen extends StatefulWidget {
 
 class _QuizScreenState extends State<QuizScreen> {
   late PageController pageController;
+  int currentPage = 0;
 
   @override
   void initState() {
@@ -32,22 +35,37 @@ class _QuizScreenState extends State<QuizScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => QuizBloc(widget.questions)..add(const QuizEventLoaded()),
+      create: (context) => QuizBloc(widget.questions, AiRepository())
+        ..add(const QuizEventLoaded()),
       child: Scaffold(
         appBar: AppBar(
           title: const Text('Questions'),
           leading: IconButton(
-            icon: const Icon(Icons.arrow_back_ios),
-            onPressed: () {
-              Navigator.pop(context);
-            }),
+              icon: const Icon(Icons.arrow_back_ios),
+              onPressed: () {
+                Navigator.pop(context);
+              }),
         ),
         body: Padding(
           padding: const EdgeInsets.all(16.0),
-          child: BlocBuilder<QuizBloc, QuizState>(builder: (context, state) {
-            return _buildQuestionsList(
-                context, state.questions, state.selectedOptions);
-          }),
+          child: BlocConsumer<QuizBloc, QuizState>(
+              listener: (context, state) {
+                if(state.feedbacks.isNotEmpty) {
+                  Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            ResultScreen(feedbacks: state.feedbacks)),
+                        (route) => false,
+                  );
+                }
+              },
+              builder: (context, state) {
+                return state.isLoading
+                    ? _buildLoading()
+                    : _buildQuestionsList(
+                        context, state.questions, state.selectedOptions);
+              }),
         ),
       ),
     );
@@ -65,6 +83,11 @@ class _QuizScreenState extends State<QuizScreen> {
       alignment: Alignment.bottomCenter,
       children: <Widget>[
         PageView.builder(
+            onPageChanged: (newPage) {
+              setState(() {
+                currentPage = newPage;
+              });
+            },
             controller: pageController,
             itemCount: questions.length,
             itemBuilder: (context, index) {
@@ -73,7 +96,8 @@ class _QuizScreenState extends State<QuizScreen> {
 
               return SingleChoiceQuestion(
                 onOptionSelected: (String selectedOption) {
-                  BlocProvider.of<QuizBloc>(context).add(QuizEventOptionSelected(index, selectedOption));
+                  BlocProvider.of<QuizBloc>(context)
+                      .add(QuizEventOptionSelected(index, selectedOption));
                 },
                 question: question,
                 selectedOption: selectedOption,
@@ -101,15 +125,23 @@ class _QuizScreenState extends State<QuizScreen> {
             },
             child: const Text('Previous'),
           ),
-          ElevatedButton(
-            onPressed: () {
-              pageController.nextPage(
-                duration: const Duration(milliseconds: 300),
-                curve: Curves.easeInOut,
-              );
-            },
-            child: const Text('Next'),
-          ),
+          currentPage + 1 < widget.questions.length
+              ? ElevatedButton(
+                  onPressed: () {
+                    pageController.nextPage(
+                      duration: const Duration(milliseconds: 300),
+                      curve: Curves.easeInOut,
+                    );
+                  },
+                  child: const Text('Next'),
+                )
+              : ElevatedButton(
+                  onPressed: () {
+                    BlocProvider.of<QuizBloc>(context)
+                        .add(const QuizEventFinished());
+                  },
+                  child: const Text('Finish'),
+                )
         ],
       ),
     );
